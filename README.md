@@ -42,6 +42,14 @@ if __name__ == "__main__":
                         string_decrypted
                     )
         )
+
+```
+
+Code results:
+```
+            String Original: agua
+            Encrypted: uqqnvgobziluvofpnmlacpubutcajfvv$YWd1YQ==
+            Decrypted: agua
 ```
 
 Best regards
