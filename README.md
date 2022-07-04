@@ -7,7 +7,7 @@ Actually has two way to use it, you can encrypt and decrypt, baseaded in base64 
 
 ### Functions
 Actually as an four application, Encode and Decode strings, getCredentials and encodeCredentials.
-```
+```python
 CODE.encodeString(string) # Encrypt string (return string)
 CODE.decodeString(string) # Decrypt String (return string)
 
