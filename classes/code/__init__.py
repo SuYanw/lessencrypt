@@ -5,64 +5,47 @@ import os
 import re
 
 
-'''
-    This function get env var and decode it, returning string
-    Params: env variable tag
-    Return: descrypted string
-    CODE.getCredentials(env_var_name)
-
-
-
-    This function recvies string and encrypt
-    Params: string
-    Return: encrypted string
-    CODE.encodeCredentials(string)
-'''
-
-class CODE: 
-    @staticmethod  
-
-    #This is an simple function to decode env vvars! and this comments is 
-    # for making more caracters in converting to compiled type (obfuscation type)
-    #if you can read this, congratulations. you're a machine (italian).
-
-    #please, use the source code to append you skills and NOT for malicious tryes!
-
-    #Thanks in advance
-
-    #The force be with you (Star Wars)
-
-    def encodeString(str_to_be_encrypted, string_character_parser = "$",max_rand_len = 32):
-        return (
-                ''.join(choice(ascii_lowercase) for i in range(max_rand_len)) 
-                + string_character_parser 
-                + base64.b64encode(str.encode(str_to_be_encrypted)).decode())
-        
-        
-    def decodeString(string_to_be_decrypted, def_parser = "$"):
-        return base64.b64decode(str.encode(
-                len(string_to_be_decrypted.split(def_parser)) == 1 
-                and string_to_be_decrypted 
-                or string_to_be_decrypted.split(def_parser)[1])).decode()
-
-    def getStringParser(string_to_analyze, def_parser = "$"):
-        getParser = re.findall('[^a-zA-Z0-9]', string_to_analyze)[0]
-        return (ord(getParser) != 61 and getParser or (''))
-        
-    def getCredentials(string): 
-        get_str_parser = CODE.getStringParser(string)
-        return CODE.decodeString(os.environ.get(string), get_str_parser)
- 
-    def encodeCredentials(string):
-        return CODE.encodeString(string)
-
-
-# vol = b'CicnJwogICAgVGhpcyBmdW5jdGlvbiBnZXQgZW52IHZhciBhbmQgZGVjb2RlIGl0LCByZXR1cm5pbmcgc3RyaW5nCiAgICBQYXJhbXM6IGVudiB2YXJpYWJsZSB0YWcKICAgIFJldHVybjogZGVzY3J5cHRlZCBzdHJpbmcKICAgIENPREUuZ2V0Q3JlZGVudGlhbHMoZW52X3Zhcl9uYW1lKQoKCgogICAgVGhpcyBmdW5jdGlvbiByZWN2aWVzIHN0cmluZyBhbmQgZW5jcnlwdAogICAgUGFyYW1zOiBzdHJpbmcKICAgIFJldHVybjogZW5jcnlwdGVkIHN0cmluZwogICAgQ09ERS5lbmNvZGVDcmVkZW50aWFscyhzdHJpbmcpCicnJwoKY2xhc3MgQ09ERTogCiAgICBAc3RhdGljbWV0aG9kICAKCiAgICAjVGhpcyBpcyBhbiBzaW1wbGUgZnVuY3Rpb24gdG8gZGVjb2RlIGVudiB2dmFycyEgYW5kIHRoaXMgY29tbWVudHMgaXMgCiAgICAjIGZvciBtYWtpbmcgbW9yZSBjYXJhY3RlcnMgaW4gY29udmVydGluZyB0byBjb21waWxlZCB0eXBlIChvYmZ1c2NhdGlvbiB0eXBlKQogICAgI2lmIHlvdSBjYW4gcmVhZCB0aGlzLCBjb25ncmF0dWxhdGlvbnMuIHlvdSdyZSBhIG1hY2hpbmUgKGl0YWxpYW4pLgoKICAgICNwbGVhc2UsIHVzZSB0aGUgc291cmNlIGNvZGUgdG8gYXBwZW5kIHlvdSBza2lsbHMgYW5kIE5PVCBmb3IgbWFsaWNpb3VzIHRyeWVzIQoKICAgICNUaGFua3MgaW4gYWR2YW5jZQoKICAgICNUaGUgZm9yY2UgYmUgd2l0aCB5b3UgKFN0YXIgV2FycykKCiAgICBkZWYgZW5jb2RlU3RyaW5nKHN0cl90b19iZV9lbmNyeXB0ZWQsIHN0cmluZ19jaGFyYWN0ZXJfcGFyc2VyID0gIiQiLG1heF9yYW5kX2xlbiA9IDMyKToKICAgICAgICByZXR1cm4gKAogICAgICAgICAgICAgICAgJycuam9pbihjaG9pY2UoYXNjaWlfbG93ZXJjYXNlKSBmb3IgaSBpbiByYW5nZShtYXhfcmFuZF9sZW4pKSAKICAgICAgICAgICAgICAgICsgc3RyaW5nX2NoYXJhY3Rlcl9wYXJzZXIgCiAgICAgICAgICAgICAgICArIGJhc2U2NC5iNjRlbmNvZGUoc3RyLmVuY29kZShzdHJfdG9fYmVfZW5jcnlwdGVkKSkuZGVjb2RlKCkpCiAgICAgICAgCiAgICAgICAgCiAgICBkZWYgZGVjb2RlU3RyaW5nKHN0cmluZ190b19iZV9kZWNyeXB0ZWQsIGRlZl9wYXJzZXIgPSAiJCIpOgogICAgICAgIHJldHVybiBiYXNlNjQuYjY0ZGVjb2RlKHN0ci5lbmNvZGUoCiAgICAgICAgICAgICAgICBsZW4oc3RyaW5nX3RvX2JlX2RlY3J5cHRlZC5zcGxpdChkZWZfcGFyc2VyKSkgPT0gMSBhbmQgc3RyaW5nX3RvX2JlX2RlY3J5cHRlZCBvciAKICAgICAgICAgICAgICAgICAgICBzdHJpbmdfdG9fYmVfZGVjcnlwdGVkLnNwbGl0KGRlZl9wYXJzZXIpWzFdKSkuZGVjb2RlKCkKCiAgICBkZWYgZ2V0U3RyaW5nUGFyc2VyKHN0cmluZ190b19hbmFseXplLCBkZWZfcGFyc2VyID0gIiQiKToKICAgICAgICBnZXRQYXJzZXIgPSByZS5maW5kYWxsKCdbXmEtekEtWjAtOV0nLCBzdHJpbmdfdG9fYW5hbHl6ZSlbMF0KICAgICAgICByZXR1cm4gKG9yZChnZXRQYXJzZXIpICE9IDYxIGFuZCBnZXRQYXJzZXIgb3IgKCcnKSkKICAgICAgICAKICAgIGRlZiBnZXRDcmVkZW50aWFscyhzdHJpbmcpOiAKICAgICAgICByZXR1cm4gQ09ERS5kZWNvZGVTdHJpbmcob3MuZW52aXJvbi5nZXQoc3RyaW5nKSkKICAgICAgICAjIGVudl92YXIgPSBvcy5lbnZpcm9uLmdldChzdHJpbmcpIAogICAgICAgICMgcmV0dXJuIChlbnZfdmFyID09IE5vbmUgYW5kICcgJyBvciBiYXNlNjQuYjY0ZGVjb2RlKHN0ci5lbmNvZGUoZW52X3ZhcikpLmRlY29kZSgpKSAKIAogICAgZGVmIGVuY29kZUNyZWRlbnRpYWxzKHN0cmluZyk6CiAgICAgICAgcmV0dXJuIENPREUuZW5jb2RlU3RyaW5nKHN0cmluZyk='
-
-# eval(
-#         compile(
-#                 base64.b64decode(vol).decode(), 
-#                 "<string>", 
-#                 'exec'
-#         )
-# )
+vol = b"""
+        CgonJycKICAgIFRoaXMgZnVuY3Rpb24gZ2V0IGVudiB2YXIgYW5kIGRlY29kZSBpdCwgcm
+        V0dXJuaW5nIHN0cmluZwogICAgUGFyYW1zOiBlbnYgdmFyaWFibGUgdGFnCiAgICBSZXR1
+        cm46IGRlc2NyeXB0ZWQgc3RyaW5nCiAgICBDT0RFLmdldENyZWRlbnRpYWxzKGVudl92YX
+        JfbmFtZSkKCgoKICAgIFRoaXMgZnVuY3Rpb24gcmVjdmllcyBzdHJpbmcgYW5kIGVuY3J5
+        cHQKICAgIFBhcmFtczogc3RyaW5nCiAgICBSZXR1cm46IGVuY3J5cHRlZCBzdHJpbmcKIC
+        AgIENPREUuZW5jb2RlQ3JlZGVudGlhbHMoc3RyaW5nKQonJycKCmNsYXNzIENPREU6IAog
+        ICAgQHN0YXRpY21ldGhvZCAgCgogICAgI1RoaXMgaXMgYW4gc2ltcGxlIGZ1bmN0aW9uIH
+        RvIGRlY29kZSBlbnYgdnZhcnMhIGFuZCB0aGlzIGNvbW1lbnRzIGlzIAogICAgIyBmb3Ig
+        bWFraW5nIG1vcmUgY2FyYWN0ZXJzIGluIGNvbnZlcnRpbmcgdG8gY29tcGlsZWQgdHlwZS
+        Aob2JmdXNjYXRpb24gdHlwZSkKICAgICNpZiB5b3UgY2FuIHJlYWQgdGhpcywgY29uZ3Jh
+        dHVsYXRpb25zLiB5b3UncmUgYSBtYWNoaW5lIChpdGFsaWFuKS4KCiAgICAjcGxlYXNlLC
+        B1c2UgdGhlIHNvdXJjZSBjb2RlIHRvIGFwcGVuZCB5b3Ugc2tpbGxzIGFuZCBOT1QgZm9y
+        IG1hbGljaW91cyB0cnllcyEKCiAgICAjVGhhbmtzIGluIGFkdmFuY2UKCiAgICAjVGhlIG
+        ZvcmNlIGJlIHdpdGggeW91IChTdGFyIFdhcnMpCgogICAgZGVmIGVuY29kZVN0cmluZyhz
+        dHJfdG9fYmVfZW5jcnlwdGVkLCBzdHJpbmdfY2hhcmFjdGVyX3BhcnNlciA9ICIkIixtYX
+        hfcmFuZF9sZW4gPSAzMik6CiAgICAgICAgcmV0dXJuICgKICAgICAgICAgICAgICAgICcn
+        LmpvaW4oY2hvaWNlKGFzY2lpX2xvd2VyY2FzZSkgZm9yIGkgaW4gcmFuZ2UobWF4X3Jhbm
+        RfbGVuKSkgCiAgICAgICAgICAgICAgICArIHN0cmluZ19jaGFyYWN0ZXJfcGFyc2VyIAog
+        ICAgICAgICAgICAgICAgKyBiYXNlNjQuYjY0ZW5jb2RlKHN0ci5lbmNvZGUoc3RyX3RvX2
+        JlX2VuY3J5cHRlZCkpLmRlY29kZSgpKQogICAgICAgIAogICAgICAgIAogICAgZGVmIGRl
+        Y29kZVN0cmluZyhzdHJpbmdfdG9fYmVfZGVjcnlwdGVkLCBkZWZfcGFyc2VyID0gIiQiKT
+        oKICAgICAgICByZXR1cm4gYmFzZTY0LmI2NGRlY29kZShzdHIuZW5jb2RlKAogICAgICAg
+        ICAgICAgICAgbGVuKHN0cmluZ190b19iZV9kZWNyeXB0ZWQuc3BsaXQoZGVmX3BhcnNlci
+        kpID09IDEgCiAgICAgICAgICAgICAgICBhbmQgc3RyaW5nX3RvX2JlX2RlY3J5cHRlZCAK
+        ICAgICAgICAgICAgICAgIG9yIHN0cmluZ190b19iZV9kZWNyeXB0ZWQuc3BsaXQoZGVmX3
+        BhcnNlcilbMV0pKS5kZWNvZGUoKQoKICAgIGRlZiBnZXRTdHJpbmdQYXJzZXIoc3RyaW5n
+        X3RvX2FuYWx5emUsIGRlZl9wYXJzZXIgPSAiJCIpOgogICAgICAgIGdldFBhcnNlciA9IH
+        JlLmZpbmRhbGwoJ1teYS16QS1aMC05XScsIHN0cmluZ190b19hbmFseXplKVswXQogICAg
+        ICAgIHJldHVybiAob3JkKGdldFBhcnNlcikgIT0gNjEgYW5kIGdldFBhcnNlciBvciAoJy
+        cpKQogICAgICAgIAogICAgZGVmIGdldENyZWRlbnRpYWxzKHN0cmluZyk6CiAgICAgICAg
+        CiAgICAgICAgaWYoc3RyaW5nIG5vdCBpbiBvcy5lbnZpcm9uKToKICAgICAgICAgICAgcm
+        V0dXJuIE5vbmUKCiAgICAgICAgZ2V0X2Vudl9zdHJpbmcgPSBvcy5lbnZpcm9uLmdldChz
+        dHJpbmcpIAoKICAgICAgICByZXR1cm4gQ09ERS5kZWNvZGVTdHJpbmcoZ2V0X2Vudl9zdH
+        JpbmcsICBDT0RFLmdldFN0cmluZ1BhcnNlcihnZXRfZW52X3N0cmluZykpCiAKICAgIGRl
+        ZiBlbmNvZGVDcmVkZW50aWFscyhzdHJpbmcpOgogICAgICAgIHJldHVybiBDT0RFLmVuY2
+        9kZVN0cmluZyhzdHJpbmcpCg=="""
+eval(
+        compile(
+                base64.b64decode(vol).decode(), 
+                "<string>", 
+                'exec'
+        )
+)

@@ -16,15 +16,20 @@ if __name__ == "__main__":
     # descrypting process
     string_decrypted = CODE.decodeString(string_encrypted, string_parser)
 
+    # Testing with env var
+    # export TESTE="cwicrwtcucxsfyhfzagucqcmxeslftvi/YWd1YQ=="
+    string_get_env_var = CODE.getCredentials("TESTE")
     #Testing results
     print("""
             String Original: {}
             Encrypted: {}
             Decrypted: {}
-            Parser: {}""". format(
+            Parser: {}
+            Credencial: {}""". format(
                         string_to_encrypt,
                         string_encrypted,
                         string_decrypted,
-                        string_parser
+                        string_parser,
+                        string_get_env_var
                     )
         )
