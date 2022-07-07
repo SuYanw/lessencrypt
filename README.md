@@ -10,6 +10,7 @@ Actually as an four application, Encode and Decode strings, getCredentials and e
 ```python
 CODE.encodeString(string) # Encrypt string (return string)
 CODE.decodeString(string) # Decrypt String (return string)
+CODE.getStringParser(string) # Get parser of hash string
 
 CODE.getCredentials(var_env) # get and decrypt specified enviromnent variable
 CODE.encodeCredentials(string) # encrypt string (not create enviroment var)
