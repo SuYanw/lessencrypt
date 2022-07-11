@@ -4,6 +4,16 @@ from random import choice
 import os
 import re
 
+'''
+        There are a functions to use:
+        
+        CODE.encodeString(string) # Encrypt string (return string)
+        CODE.decodeString(string) # Decrypt String (return string)
+        CODE.getStringParser(string) # Get parser of hash string
+
+        CODE.getCredentials(var_env) # get and decrypt specified enviromnent variable
+        CODE.encodeCredentials(string) # encrypt string (not create enviroment var)
+'''
 
 vol = b"""
         CgonJycKICAgIFRoaXMgZnVuY3Rpb24gZ2V0IGVudiB2YXIgYW5kIGRlY29kZSBpdCwgcm
